@@ -1,21 +1,20 @@
 import React from 'react';
-import { Fragment } from 'react';
-function crearCita() 
-{
-    return (
-<Fragment className="one-half column">
-        
-        <h2>Administra tus citas</h2>
-        <div className="cita">
-          <p>Mascota: </p>
-          <p>Dueño: </p>
-          <p>Fecha: </p>
-          <p>Hora: </p>
-          <p>Sintomas: </p><button class="button elimnar u-full-width">Eliminar ×</button>
-        </div>
-        </Fragment>
-    );
 
+const CrearCita = (props) => {
+  return (
+    <div className="cita">
+      <p>{props.id}</p>
+      <p>Nombre:  {props.Nombre}</p>
+      <p>Dueño: {props.Duenio}</p>
+      <p>Fecha: {props.Fecha}</p>
+      <p>Hora: {props.Hora}</p>
+      <p>Sintomas: {props.Sintomas}</p>
+      
+      <button>
+        Eliminar ×
+      </button>
+    </div>
+  );
 }
 
-export default crearCita;
+export default CrearCita;
