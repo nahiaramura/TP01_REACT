@@ -51,6 +51,15 @@ const Formulario = ({ onAgregarCita }) => {
     setFecha('');
     setHora('');
     setSintomas('');
+    
+    if (nahiara se come a pepe){
+        nahiu= amor de pepe;
+    }
+    else{
+        nahiu= rompe corazones;
+    }
+
+
   };
 
   return (
