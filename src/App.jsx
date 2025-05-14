@@ -1,34 +1,42 @@
-//import { useState } from 'react'
-import './App.css'
-import './index.css'
-import Formulario from './modules/Formulario.jsx'
-import Citas from './modules/Cita.jsx'
+import { useState, useEffect } from 'react';
+import Formulario from './modules/Formulario';
+import ListadoCitas from './modules/ListadoCitas';
+import './index.css';
 
 function App() {
+  const [citas, setCitas] = useState(() => {
+    const citasGuardadas = localStorage.getItem('citas');
+    return citasGuardadas ? JSON.parse(citasGuardadas) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('citas', JSON.stringify(citas));
+  }, [citas]);
+
+  const agregarCita = (cita) => {
+    setCitas([...citas, cita]);
+  };
+
+  const eliminarCita = (id) => {
+    const citasActualizadas = citas.filter((cita) => cita.id !== id);
+    setCitas(citasActualizadas);
+  };
 
   return (
-    <>
-      <h1>ADMINISTRADOR DE PACIENTES</h1>
-      <div className="container">
-        <div className="row">
-          <div className="one-half column">
-            <h2>Crear mi Cita</h2>
-            <Formulario />
-            
-          </div>
-          <div className="one-half column">
-            <h2>Administra tus citas</h2>
-            <Citas Nombre="Nina" Duenio='Lola' Fecha= '2020-04-05' Hora='06:26' Sintomas= 'Se rompio una pata'/>
-            <Citas Nombre="Tobi" Duenio='Nahi' Fecha= '2003-02-05' Hora='23:34' Sintomas= 'Le duele la panza'/>
-            <Citas Nombre="Cucki" Duenio='Aaron' Fecha= '2007-08-05' Hora='16:15' Sintomas= 'Vomitos'/>
-
-          </div>
+    <div className="container">
+      <h1>Administrador de Pacientes</h1>
+      <div className="row">
+        <div className="one-half column">
+          <h2>Crear Mi Cita</h2>
+          <Formulario onAgregarCita={agregarCita} />
+        </div>
+        <div className="one-half column">
+          <h2>Administra tus Citas:</h2>
+          <ListadoCitas citas={citas} onEliminar={eliminarCita} />
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
-
-
+export default App;

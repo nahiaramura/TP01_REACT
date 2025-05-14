@@ -1,20 +1,16 @@
-import React from 'react';
-
-const CrearCita = (props) => {
+const Cita = ({ cita, onEliminar }) => {
   return (
     <div className="cita">
-      <p>{props.id}</p>
-      <p>Nombre:  {props.Nombre}</p>
-      <p>Dueño: {props.Duenio}</p>
-      <p>Fecha: {props.Fecha}</p>
-      <p>Hora: {props.Hora}</p>
-      <p>Sintomas: {props.Sintomas}</p>
-      
-      <button>
-        Eliminar ×
+      <p>Mascota: <span>{cita.mascota}</span></p>
+      <p>Dueño: <span>{cita.dueño}</span></p>
+      <p>Fecha: <span>{cita.fecha}</span></p>
+      <p>Hora: <span>{cita.hora}</span></p>
+      <p>Síntomas: <span>{cita.sintomas}</span></p>
+      <button className="button eliminar u-full-width" onClick={() => onEliminar(cita.id)}>
+        Eliminar ✖
       </button>
     </div>
   );
-}
+};
 
-export default CrearCita;
+export default Cita;
